@@ -8,13 +8,14 @@ import { Observable } from 'rxjs';
 export class ProjectService {
 
   constructor(private _httpClient:HttpClient) { }
+  
   getAllProjects():Observable<any>
   {
     return this._httpClient.get(`https://localhost:44377/api/project`);
   }
   postProject(projecData:any):Observable<any>
   {
-    console.log(projecData);
+    
     return this._httpClient.post(`https://localhost:44377/api/project`,projecData)
   }
   getAllprojectForCharityId(id:number):Observable<any>
@@ -24,5 +25,11 @@ export class ProjectService {
   getProjectsByPage(page: number):Observable<any>
   {
    return this._httpClient.get(`https://localhost:44377/api/project/page?page=${page}`);
+  }
+
+ getProjectsByCategory(categoryName:string):Observable<any>
+ {
+  return this._httpClient.get(`https://localhost:44377/api/project/category/${categoryName}`);
  }
+
 }
